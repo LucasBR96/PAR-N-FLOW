@@ -1,0 +1,41 @@
+QUESTÃO 1
+
+A) Sim. Se  J( M ) for o conjunto de vértices em M, dito saturados, V( G ) - J( M ) = { g , h , i } então é o conjunto de vértices insaturados. Não existe, em E( G ) nenhuma aresta que ligue dois vértices do conjuto insaturado. Portanto, não é possivel criar nenhum emparalhemanento M' que contenha o emparalhamento M como subconjunto.
+
+B) Um caminho aumentante é um caminho que começa e termina com vértices do conjunto insaturado, e alterna arestas emparelhadas e não emparelhadas. No grafo do exercício, por exemplo, um caminho aumentante seria: d -> c -> f -> g, com c -> f sendo a aresta emparelhada.
+
+Esses caminhos são interessantes pois ao invertermos a condição de cada aresta dentro de um caminho, obtemos um novo emparelhamento M' que é um item maior que o conjunto M original. É possivel provar que:
+
+   P -> conjunto de arestas do caminho aumentante
+   M -> emparelhamento original
+   M' -> novo emparalhamento
+
+   M' = ( P - M ) v ( M - P ) ( M' é a diferença simétrica entre M e P )
+
+Um emparelhamento máximo é um que tem o maior número de arestas possível para o seu grafo. Se M for um emparelhamento desses, não é possível existir um caminho aumentante em G, pois se existisse, haveria um outro emparelhamento que seria maior que original, que contradizeria a premissa do primeiro ser máximo.
+
+O algoritimo assim, em python, fica:
+
+def max_par( G , M = None ):
+
+   #--------------------------------------
+   # M tem default para none caso o progra
+   # mador queira acha o máximo do zero, ou
+   # deseja começar de M estabelcido
+   if M is None:
+      M = set()
+   
+   P = set( growing_path( G , M ) )
+
+   #--------------------------------------
+   #não existe nenhum caminho, então P vazio
+   if not P: 
+      return M
+
+   #--------------------------------------------
+   # diferença simétrica, M fica uma aresta maior
+   M = ( M - P ) | ( P - M ) 
+   return max_par( G , M )
+
+QUESTÃO 2
+
