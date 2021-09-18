@@ -39,3 +39,37 @@ def max_par( G , M = None ):
 
 QUESTÃO 2
 
+a) 
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v2   |   4   |
+   v2   |    t    |   3   |
+   v2   |    v3   |   1   |
+   v3   |    v4   |   1   | 
+   v4   |    t    |   1   |
+
+O fluxo total é 4, não é maximal pois é possível coexistir com outro fluxo
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v3   |   2   |
+   v3   |    v4   |   2   | ( + 1 )
+   v4   |    s    |   2   | ( + 1 )
+
+Se não é maximal, não é maximo. Os parenteses na ultima tabela são os valores do
+fluxo para as mesmas arestas na primeira tabela.
+
+b)
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v1   |   3   |
+   s    |    v2   |   3   |
+   s    |    v3   |   1   |
+   v1   |    v3   |   3   |
+   v2   |    t    |   3   |
+   v3   |    v4   |   4   |
+   v4   |    t    |   4   |
+
+ A unicas forma de acessar t é por v2 e v4. A aresta v2 e t está saturada. v4 só pode ser acesada por v3, e a aresta que liga as duas está saturada. Logo, o fluxo de valor 7 é um fluxo maximal.

@@ -64,5 +64,5 @@ def max_flow( V , E , s , t ):
             # Atualizando o residual
             residual_E[ tup ] -= choke_value
             if residual_E[ tup ] == 0:
-                del residual_E[ tup ]
+                    del residual_E[ tup ]
 
