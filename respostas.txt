@@ -60,6 +60,23 @@ partida | chegada | fluxo |
 Se não é maximal, não é maximo. Os parenteses na ultima tabela são os valores do
 fluxo para as mesmas arestas na primeira tabela.
 
+b)
+
+Um fluxo maximal, de valor igual a 6, é dado pela tabela abaixo
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v1   |   2   |
+   s    |    v2   |   4   |
+   v2   |    v3   |   1   |
+   v2   |    t    |   3   |
+   v1   |    v3   |   3   |
+   v3   |    v4   |   4   |
+   v4   |    v1   |   1   |
+   v4   |    t    |   3   |
+
+É maximal porque v4 e v2 são inacessíveis na rede residual
+
 c)
 
 partida | chegada | fluxo |
