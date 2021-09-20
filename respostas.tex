@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\begin{document}
+
+
+\section{ QUESTÃO 1 }
+
+A) Sim. Se \textbf{ J( M ) } for o conjunto de vértices em \textbf{M}, dito saturados, \textbf{ V( G ) - J( M ) = { g , h , i } } então é o conjunto de vértices insaturados. Não existe, em \textbf{E( G )} nenhuma aresta que ligue dois vértices do conjuto insaturado. Portanto, não é possivel criar nenhum emparalhemanento M' que contenha o emparalhamento M como subconjunto.
+
+B) Um caminho aumentante é um caminho que começa e termina com vértices do conjunto insaturado, e alterna arestas emparelhadas e não emparelhadas. No grafo do exercício, por exemplo, um caminho aumentante seria: d -> c -> f -> g, com c -> f sendo a aresta emparelhada.
+
+Esses caminhos são interessantes pois ao invertermos a condição de cada aresta dentro de um caminho, obtemos um novo emparelhamento M' que é um item maior que o conjunto M original. É possivel provar que:
+
+   P -> conjunto de arestas do caminho aumentante
+   M -> emparelhamento original
+   M' -> novo emparalhamento
+
+   M' = ( P - M ) v ( M - P ) ( M' é a diferença simétrica entre M e P )
+
+Um emparelhamento máximo é um que tem o maior número de arestas possível para o seu grafo. Se M for um emparelhamento desses, não é possível existir um caminho aumentante em G, pois se existisse, haveria um outro emparelhamento que seria maior que original, que contradizeria a premissa do primeiro ser máximo.
+
+O algoritimo assim, em python, fica:
+
+def max_par( G , M = None ):
+
+   #--------------------------------------
+   # M tem default para none caso o progra
+   # mador queira acha o máximo do zero, ou
+   # deseja começar de M estabelcido
+   if M is None:
+      M = set()
+   
+   P = set( growing_path( G , M ) )
+
+   #--------------------------------------
+   #não existe nenhum caminho, então P vazio
+   if not P: 
+      return M
+
+   #--------------------------------------------
+   # diferença simétrica, M fica uma aresta maior
+   M = ( M - P ) | ( P - M ) 
+   return max_par( G , M )
+
+\section{QUESTÃO 2}
+
+a) 
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v2   |   4   |
+   v2   |    t    |   3   |
+   v2   |    v3   |   1   |
+   v3   |    v4   |   1   | 
+   v4   |    t    |   1   |
+
+O fluxo total é 4, não é maximal pois é possível coexistir com outro fluxo
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v3   |   2   |
+   v3   |    v4   |   2   | ( + 1 )
+   v4   |    s    |   2   | ( + 1 )
+
+Se não é maximal, não é maximo. Os parenteses na ultima tabela são os valores do
+fluxo para as mesmas arestas na primeira tabela.
+
+b)
+
+Um fluxo maximal, de valor igual a 6, é dado pela tabela abaixo
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v1   |   2   |
+   s    |    v2   |   4   |
+   v2   |    v3   |   1   |
+   v2   |    t    |   3   |
+   v1   |    v3   |   3   |
+   v3   |    v4   |   4   |
+   v4   |    v1   |   1   |
+   v4   |    t    |   3   |
+
+É maximal porque v4 e v2 são inacessíveis na rede residual
+
+c)
+
+partida | chegada | fluxo |
+--------------------------
+   s    |    v1   |   3   |
+   s    |    v2   |   3   |
+   s    |    v3   |   1   |
+   v1   |    v3   |   3   |
+   v2   |    t    |   3   |
+   v3   |    v4   |   4   |
+   v4   |    t    |   4   |
+
+ A unicas forma de acessar t é por v2 e v4. A aresta v2 e t está saturada. v4 só pode ser acesada por v3, e a aresta que liga as duas está saturada. Logo, o fluxo de valor 7 é um fluxo maximal.
+
+Alem disso, O fluxo é maximo, pois segue o método de Floyd-Fuelkerson, descrito abaixo:
+
+\begin{enumerate}
+\item Ache uma rota da fonte para sumidouro da rede.
+\item Encontre o valor de gargalo dessa rota.
+\item Para cada aresta dessa rota, amento o valor do seu fluxo pelo valor do gragalo
+\item Verifique se é possível alcançar o sumidouro a partir da fonte na rede residual
+   \begin{itemize}
+   \item se sim, volte ao passo1
+   \item se não, fim.
+   \end{itemize}
+\end{enumerate}
+
+\end{document}

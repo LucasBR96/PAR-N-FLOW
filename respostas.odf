@@ -1,6 +1,11 @@
-QUESTÃO 1
+\documentclass{article}
 
-A) Sim. Se  J( M ) for o conjunto de vértices em M, dito saturados, V( G ) - J( M ) = { g , h , i } então é o conjunto de vértices insaturados. Não existe, em E( G ) nenhuma aresta que ligue dois vértices do conjuto insaturado. Portanto, não é possivel criar nenhum emparalhemanento M' que contenha o emparalhamento M como subconjunto.
+\begin{document}
+
+
+\section{ QUESTÃO 1 }
+
+A) Sim. Se \textbf{ J( M ) } for o conjunto de vértices em \textbf{M}, dito saturados, \textbf{ V( G ) - J( M ) = { g , h , i } } então é o conjunto de vértices insaturados. Não existe, em \textbf{E( G )} nenhuma aresta que ligue dois vértices do conjuto insaturado. Portanto, não é possivel criar nenhum emparalhemanento M' que contenha o emparalhamento M como subconjunto.
 
 B) Um caminho aumentante é um caminho que começa e termina com vértices do conjunto insaturado, e alterna arestas emparelhadas e não emparelhadas. No grafo do exercício, por exemplo, um caminho aumentante seria: d -> c -> f -> g, com c -> f sendo a aresta emparelhada.
 
@@ -37,7 +42,7 @@ def max_par( G , M = None ):
    M = ( M - P ) | ( P - M ) 
    return max_par( G , M )
 
-QUESTÃO 2
+\section{QUESTÃO 2}
 
 a) 
 
@@ -100,3 +105,4 @@ Alem disso, O fluxo é maximo, pois segue o método de Floyd-Fuelkerson, descrit
    4-a) se sim, volte ao passo1
    4-b) se não, fim.
 
+\end{document}
